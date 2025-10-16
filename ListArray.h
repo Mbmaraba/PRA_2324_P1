@@ -33,8 +33,6 @@ class ListArray : public List<T> {
 
 		temp[pos]= e;
 
-
-
 		//Copiamos los elementos que estaban después de la posición pos, pero desplazándolos una posición a la derecha (i+1)
 		for (int i = pos; i < n; i++){
 			temp[i + 1]= arr[i];
@@ -82,37 +80,37 @@ class ListArray : public List<T> {
 
 	}
 
-       	T remove(int pos) override{
+	T remove(int pos) override{
 			// Validar posición
-    if (pos < 0 || pos >= n) {
+		if (pos < 0 || pos >= n) {
         throw std::out_of_range("Posición fuera de rango");
-    }
+		}
 
     // Guardar el elemento a eliminar
-    T removed = arr[pos];
+		T removed = arr[pos];
 
     // Crear un nuevo arreglo de tamaño n-1
-    T* temp = new T[n - 1];
+		T* temp = new T[n - 1];
 
     // Copiar elementos antes de la posición pos
-    for (int i = 0; i < pos; i++) {
+		for (int i = 0; i < pos; i++) {
         temp[i] = arr[i];
     }
 
     // Copiar elementos después de la posición pos
-    for (int i = pos + 1; i < n; i++) {
+		for (int i = pos + 1; i < n; i++) {
         temp[i - 1] = arr[i];//Los desplazamos una posición a la izquierda (i-1) para llenar el hueco dejado por el elemento eliminado.
     }
 
     // Liberar el arreglo antiguo y reasignar
-    delete[] arr;
-    arr = temp;
+		delete[] arr;
+		arr = temp;
 
     // Reducir el tamaño
-    n--;
+		n--;
 
     // Devolver el elemento eliminado
-    return removed;
+		return removed;
 }
 
 
@@ -139,11 +137,7 @@ class ListArray : public List<T> {
 
 
         bool empty() override{
-		if(n!=0){
-			return true;
-		}else{
-			return false;
-		}
+		 return n == 0;
 	}
 
         int size() override{
@@ -173,15 +167,17 @@ class ListArray : public List<T> {
 
     friend std::ostream& operator<<(std::ostream &out, const ListArray<T> &list){
 		//Permite que esta función global pueda acceder a los atributos privados
-		 out << "[";
+		 out << "List => [";
+    if (list.n > 0) {
+        out << "\n";
         for (int i = 0; i < list.n; i++) {
-            out << list.arr[i];
-            if (i != list.n - 1) {
-                out << ", ";
-            }
+            out << "  " << list.arr[i];
+            if (i != list.n - 1) out << "\n";
         }
-        out << "]";
-        return out;
+        out << "\n";
+    }
+    out << "]";
+    return out;
 	}
 
 
@@ -210,4 +206,5 @@ class ListArray : public List<T> {
 };
 
 
-
+	template <typename T>
+const int ListArray<T>::MINSIZE[] = {10};
