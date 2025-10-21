@@ -14,11 +14,11 @@ class Node {
             this-> next = next;
         }
 
-        Node(T data){
-            this->data = data;
-            this->next = nullptr;
+      //de(T data){
+           //his->data = data;
+           //his->next = nullptr;
 
-        }
+        //
       // Sobrecarga global del operador << (plantilla amiga)
     template <typename U>
     friend std::ostream& operator<<(std::ostream& out, const Node<U>& node);
