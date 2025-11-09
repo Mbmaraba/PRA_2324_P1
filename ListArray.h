@@ -4,7 +4,7 @@
 
 using namespace std;
 
-template <typename T> 
+template <typename T>
 class ListArray : public List<T> {
 
     private:
@@ -115,14 +115,14 @@ class ListArray : public List<T> {
 
 
 
-	T get(int pos)override{
+	T get(int pos) const override{
 		if(pos<0 || pos>= n){
                         throw out_of_range("Posicion no posible\n");
                 }else{
 			return arr[pos];
-			
+
 		}
-	
+
 
 	}
 
@@ -136,11 +136,11 @@ class ListArray : public List<T> {
 	}
 
 
-        bool empty() override{
+        bool empty() const override{
 		 return n == 0;
 	}
 
-        int size() override{
+        int size() const override{
 		return n;
 	}
 
@@ -156,7 +156,7 @@ class ListArray : public List<T> {
 	}
 
 	//En lugar de tener que llamar a lista.get(0), el operador [] se comporta como un array normal.
-	T operator[](int pos){
+	T operator[](int pos)const{
 		 if (pos < 0 || pos >= n) {
             throw std::out_of_range("Posición fuera de rango");
         }
@@ -202,7 +202,7 @@ class ListArray : public List<T> {
         // Actualizar la capacidad máxima
         max = new_size;
     }
-	
+
 };
 
 
